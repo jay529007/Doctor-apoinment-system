@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import bcrypt from "bcryptjs";
 import { addUser } from "../functions/userAPI";
 import { useNavigate } from "react-router-dom";
+import { saveState } from "../store/localstorage";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Register = () => {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(safeData.password, salt);
     safeData.password = hash;
-    addUser(safeData);
+    addUser(safeData);                                                                        
     console.log("Sucessfull-added");
     navigate("/");
     window.location.reload();

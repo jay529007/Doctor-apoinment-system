@@ -13,15 +13,18 @@ const GlobalStatus = () => {
 
   useEffect(() => {
     if (error) {
+      console.error("Error occurred:", error);
       navigate("/nouserfound");
     }
-  }, [error, navigate]); // 🔥 add dependencies!
+  }, [error, navigate]);
 
-  console.log("Loading...");
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center max-h-screen h-[100dvh]">
-        <AiOutlineLoading className="size-9 text-gray-500 animate-spin" />
+      <div className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex justify-center items-center">
+        <div className="flex flex-col items-center gap-4">
+          <AiOutlineLoading className="size-9 text-indigo-600 animate-spin" />
+          <p className="text-indigo-600 font-medium">Loading...</p>
+        </div>
       </div>
     );
   }
