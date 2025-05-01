@@ -14,7 +14,11 @@ const GlobalStatus = () => {
   useEffect(() => {
     if (error) {
       console.error("Error occurred:", error);
-      navigate("/nouserfound");
+      // Add a small delay before navigating to prevent UI flicker
+      const timer = setTimeout(() => {
+        navigate("/nouserfound");
+      }, 500);
+      return () => clearTimeout(timer);
     }
   }, [error, navigate]);
 
